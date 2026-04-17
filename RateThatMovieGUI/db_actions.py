@@ -12,19 +12,34 @@ def get_genres():
     genres = cur.fetchall()
     return genres
 
-# Account
-def create_account(username, password):
-    cur.execute("INSERT INTO users (username, password) VALUES (%s, %s);", [username, password])
+
+
+# Accounts / Users
+def create_user(username, password):
+    #Generate user_id, keep doing until unique one found...
+    unique_id_found = False
+    user_id = 0
+    while(not unique_id_found):
+        user_id = random.randint(1, 1000000)
+        cur.execute("SELECT * FROM users WHERE user_id=%d", [user_id])
+
+        if cur.rowcount == 0:
+            unique_id_found = True
+        else:
+            unique_id_found = False
+
+    #insert
+    cur.execute("INSERT INTO users (user_id, username, password) VALUES (%d, %s, %s);", [user_id, username, password])
     conn.commit()
 
-def check_account_exists(username):
-    cur.execute("SELECT * FROM users WHERE username=%s", [username])
+def check_user_exists(user_id):
+    cur.execute("SELECT * FROM users WHERE username=%s", [user_id])
     if cur.rowcount != 0:
         return True
     else:
         return False
 
-def get_password_for_username(username):
-    cur.execute("SELECT password FROM users WHERE username=%s", [username])
+def get_user_password(user_id):
+    cur.execute("SELECT password FROM users WHERE username=%s", [user_id])
     password = cur.fetchone()[0]
     return password
