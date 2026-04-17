@@ -17,7 +17,7 @@ def create_account(username, password):
     cur.execute("INSERT INTO users (username, password) VALUES (%s, %s);", [username, password])
     conn.commit()
 
-def check_account(username):
+def check_account_exists(username):
     cur.execute("SELECT * FROM users WHERE username=%s", [username])
     if cur.rowcount != 0:
         return True
