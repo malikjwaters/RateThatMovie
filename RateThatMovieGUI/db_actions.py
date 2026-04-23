@@ -40,6 +40,15 @@ def check_user_exists(user_id):
         return False
 
 def get_user_password(user_id):
-    cur.execute("SELECT password FROM users WHERE username=%s", [user_id])
+    cur.execute("SELECT password FROM users WHERE user_id=%s", [user_id])
     password = cur.fetchone()[0]
     return password
+
+#get user_id from username and password
+def get_user_id(username, password):
+    cur.execute("SELECT user_id FROM users WHERE username=%s AND password=%s", [username, password])
+
+    if cur.rowcount != 0:
+        return int(cur.fetchone()[0])
+    else:
+        return None

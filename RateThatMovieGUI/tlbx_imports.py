@@ -1,6 +1,10 @@
-#file from where common imports are put in
+""""
+Toolbox of Common Imports
 
-### Misc...
+    The file where we put our common imports.
+"""
+
+#Misc...
 from random import random
 
 
@@ -20,5 +24,3 @@ cur = conn.cursor(row_factory=dict_row)
 ### NiceGui Setup...
 import nicegui
 from nicegui import ui, app
-
-from tlbx_webfunctions import *
