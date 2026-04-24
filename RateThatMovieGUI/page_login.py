@@ -1,9 +1,8 @@
-#imports
 from tlbx_imports import *
 from ui_toolbox import *
 from db_actions import *
 
-username = ""
+
 password = ""
 
 
@@ -14,7 +13,6 @@ def login():
     banner()
 
     #check if logged in, and display different cards based off that.
-    username = app.storage.user.get('username', None)
     s = check_login()
     if s:
         is_logged_in()
@@ -28,40 +26,45 @@ def login():
 
 #NOT LOGGED IN & LOGGING IN
 def is_not_logged_in():
+    #Subfunction to log in
+    def try_login():
+        # check if you can get user with email and password
+        email = email_box.value; password = password_box.value
+        user_id = get_user_id(email, password)
+        # if so, store user's info (id & username)
+        if user_id != None:
+            app.storage.user['user_id'] = user_id
+            app.storage.user['username'] = get_user_username(user_id)
+            ui.navigate.to('/')  # go home
+        # if user does not exist OR is wrong password...
+        else:
+            ui.notify('Wrong email or password', color='negative')
+
+    #First, ask user to log in
     with ui.card():
         ui.label("Log in through here!")
-        username = ui.input("Username: ")
-        password = ui.input("Password: ")
+        email_box = ui.input("Email: ")
+        password_box = ui.input("Password: ", password=True, password_toggle_button=True)
         ui.button('Log In', on_click=try_login)
-
-def try_login():
-    #first, check if user even exists
-    user_id = get_user_id(username, password)
-    #if user exists
-    if user_id != None:
-        #check if user's account's password matches typed password
-        user_password = get_user_password(user_id)
-        if user_password == password:
-            app.storage.user['username'] = username
-            ui.navigate.to('/') #go home
-
-    #if user does not exist OR is wrong password...
-    else:
-        ui.notify('Wrong username or password', color='negative')
-
 
 
 #LOGGING IN & LOGGING OUT (FROM BEING LOGGED IN)
 def is_logged_in():
+    #Subfunction to log out
+    def try_logout():
+        # POP STORED INFO
+        app.storage.user.pop('user_id')
+        app.storage.user.pop('username')
+
+        #Go Home
+        ui.notify('You are now logged out', color='positive')
+        ui.navigate.to('/')
+
+    #First, page to ask user if they want to log out
     with ui.card():
-        ui.label("You are already logged in.")
+        ui.label("Click here to log out.")
         ui.button('Log Out', on_click=try_logout)
 
-def try_logout():
-    with ui.card():
-        app.storage.user.pop('username')
-        ui.label("You are now logged out.")
-        ui.button('Back to Homepage', on_click=lambda: ui.navigate.to('/'))
 
 
 

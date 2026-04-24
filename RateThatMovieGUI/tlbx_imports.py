@@ -5,7 +5,7 @@ Toolbox of Common Imports
 """
 
 #Misc...
-from random import random
+import random
 
 
 ### PsycoPG Setup...
