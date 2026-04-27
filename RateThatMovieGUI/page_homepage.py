@@ -5,7 +5,7 @@ from ui_toolbox import *
 # homepage
 @ui.page('/')
 def homepage():
-    banner()
+    uit_banner()
 
     with ui.row():
         with ui.card():
@@ -21,7 +21,7 @@ def homepage():
         homepage_dashboard()
 
     check_login_msg()
-    footnote()
+    uit_footnote()
 
 def homepage_dashboard():
     with ui.card().style('align-items: stretch').classes('w-full'):

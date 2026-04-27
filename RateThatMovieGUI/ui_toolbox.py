@@ -1,26 +1,32 @@
 #import everything
 from tlbx_imports import *
 
-def banner():
+
+
+#past header color: #6a95d9, with sides being #94acd1
+def uit_banner():
+    #styling
+    ui.colors(primary='#d9a74a')
+
     #header
-    with ui.header().style('background-color: #6a95d9'):
+    with ui.header().style('background-color: #de665d'):
         with ui.row():
             ui.label("🎥").style('font-size: 200%')
             ui.label("RateThatMovie!").style('color: #FFFFFF; font-size: 200%; font-weight: 300')
 
     #left sidebar, for space
-    with ui.left_drawer().style('background-color: #94acd1').props('width=50 bordered'):
+    with ui.left_drawer().style('background-color: #f2d494').props('width=50 bordered'):
         pass
 
     #right sidebar
-    with ui.right_drawer().style('background-color: #94acd1'):
+    with ui.right_drawer().style('background-color: #f2d494'):
         # The Buttons
         ui.button('Home', on_click=lambda: ui.navigate.to('/'))
         ui.button('Login / Logout', on_click=lambda: ui.navigate.to('/login'))
         ui.button('Create Account', on_click=lambda: ui.navigate.to('/create_account'))
 
 
-def footnote():
+def uit_footnote():
     ui.separator()
     ui.label("Credits go to Malik Waters, Peter Kennedy, and Joshua Hwang.")
 

@@ -10,7 +10,7 @@ password = ""
 #login/logout Page
 @ui.page('/login')
 def login():
-    banner()
+    uit_banner()
 
     #check if logged in, and display different cards based off that.
     s = check_login()
@@ -19,7 +19,7 @@ def login():
     else:
         is_not_logged_in()
 
-    footnote()
+    uit_footnote()
 
 
 
@@ -29,7 +29,8 @@ def is_not_logged_in():
     #Subfunction to log in
     def try_login():
         # check if you can get user with email and password
-        email = email_box.value; password = password_box.value
+        email = security_input(email_box.value)
+        password = security_input(password_box.value)
         user_id = get_user_id(email, password)
         # if so, store user's info (id & username)
         if user_id != None:
