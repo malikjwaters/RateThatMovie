@@ -7,21 +7,21 @@ from db_actions import *
 # Create a New Account
 @ui.page('/create_account')
 def create_account():
-    banner()
+    uit_banner()
 
     #check if created account; if not, go to step 1
     create_account_process()
 
-    footnote()
+    uit_footnote()
 
 #If you hadn't made an account
 def create_account_process():
     #Internal Subfunction to Create account
     def try_create_account():
         #fetch info
-        username = username_box.value
-        email = email_box.value
-        password = password_box.value
+        username = security_input(username_box.value)
+        email = security_input(email_box.value)
+        password = security_input(password_box.value)
 
         #check if account creation is successful
         #(error messages are given through the called function)
