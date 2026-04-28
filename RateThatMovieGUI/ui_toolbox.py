@@ -48,3 +48,10 @@ def check_login_msg():
     else:
         ui.label("You are not logged in.")
 
+def get_user_id():
+    user_id = app.storage.user.get('user_id', None)
+    return user_id
+
+def get_username():
+    username = app.storage.user.get('username', None)
+    return username
