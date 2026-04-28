@@ -1,0 +1,71 @@
+CREATE TABLE temp_cast (
+	id INT,
+	movie_id INT,
+	person_id INT,
+	name VARCHAR(1024),
+	character VARCHAR(1024),
+	cast_order INT,
+	movie_title VARCHAR(1024),
+	movie_release_date DATE,
+	PRIMARY KEY (id)
+);
+
+CREATE TABLE temp_movies (
+    id INT,
+    title VARCHAR(1024),
+    original_title VARCHAR(1024),
+    overview VARCHAR(1024),
+    release_date VARCHAR(1024),
+    runtime INT,
+    budget BIGINT,
+    revenue BIGINT,
+    vote_average DEC(20, 10),
+    vote_count INT,
+    popularity DEC(20, 10),
+    poster_path VARCHAR(1024),
+    backdrop_path VARCHAR(1024),
+    status VARCHAR(1024),
+    tagline VARCHAR(1024),
+    homepage VARCHAR(1024),
+    original_language VARCHAR(1024),
+    adult INT,
+    video INT,
+    created_at VARCHAR(1024),
+    updated_at VARCHAR(1024),
+    genres VARCHAR(1024),
+
+    PRIMARY KEY (id)
+);
+
+CREATE TABLE temp_crew (
+    id INT,
+    movie_id INT,
+    person_id INT,
+    name VARCHAR(1024),
+    job VARCHAR(1024),
+    department VARCHAR(1024),
+    movie_title VARCHAR(1024),
+    movie_release_date DATE,
+    PRIMARY KEY (id)
+);
+
+
+CREATE TABLE temp_genres (
+    id INT,
+    name VARCHAR(256),
+    movie_count INT,
+    PRIMARY KEY (id)
+);
+
+
+
+CREATE TABLE temp_reviews (
+    id VARCHAR(256),
+    movie_id INT,
+    author VARCHAR(1024),
+    author_username VARCHAR(1024),
+    author_rating DEC(20, 10),
+    content VARCHAR(16384),
+    url VARCHAR(1024)
+);
+
