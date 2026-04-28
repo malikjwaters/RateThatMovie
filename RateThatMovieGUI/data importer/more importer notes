@@ -1,0 +1,35 @@
+you need to convert the temp_xxx tables into more relations.
+
+
+
+CREATE TABLE movies (
+	movie_id INT,
+	title VARCHAR(128),
+	runtime INT,
+	release_date DATE,
+	budget BIGINT,
+	revenue BIGINT,
+	status VARCHAR(128),
+	adult INT,
+	genres VARCHAR(128),
+	original_language VARCHAR(64),
+
+	PRIMARY KEY (movie_id)
+);
+
+INSERT INTO movies SELECT id as movie_id, title, runtime, release_date, budget, revenue, status, adult, genres, original_language FROM temp_movies;
+SELECT title, genres FROM movies WHERE genres LIKE '%Drama%';
+
+
+CREATE TABLE persons (
+    person_id INT,
+    name VARCHAR(128),
+
+    PRIMARY KEY (person_id)
+);
+
+INSERT INTO PERSONS SELECT DISTINCT person_id, name FROM
+(SELECT person_id, name FROM temp_cast) UNION (SELECT person_id, name FROM temp_crew);
+
+
+
