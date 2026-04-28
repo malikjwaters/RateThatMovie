@@ -1,2 +1,2 @@
-DBUSER = "watmj-26"
-DBPASS = "watmj-26"
+DBUSER = "hwaji-28"
+DBPASS = "hwaji-28"
