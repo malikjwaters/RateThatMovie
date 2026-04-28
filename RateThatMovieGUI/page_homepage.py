@@ -26,5 +26,5 @@ def homepage():
 def homepage_dashboard():
     with ui.card().style('align-items: stretch').classes('w-full'):
         ui.label("Dashboard").style('font-size: 125%')
-        ui.button('See Your Reviews')
+        ui.button('See Reviews', on_click=lambda: ui.navigate.to('/reviews'))
         ui.button('Search Movies, Actors, and More!', on_click=lambda: ui.navigate.to('/search'))
